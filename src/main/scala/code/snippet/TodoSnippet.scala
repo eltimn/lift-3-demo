@@ -5,6 +5,7 @@ import net.liftweb.util.Helpers._
 import scala.xml.NodeSeq
 import net.liftweb.http.S
 import net.liftweb.http.js.JsCmds._
+import net.liftweb.http.js.JE._
 import net.liftweb.http.RoundTripInfo
 import net.liftweb.json.JsonAST._
 import code.model.Todo
@@ -50,7 +51,7 @@ object TodoSnippet {
 
       // Associate the server functions with client-side functions
       for (sess <- S.session) {
-        val script = JsCrVar("backend", sess.buildRoundtrip(List[RoundTripInfo](
+        val script = SetExp(JsVar("window", "backend"), sess.buildRoundtrip(List[RoundTripInfo](
           "load" -> doLoad _, "save" -> doSave _, "remove" -> doRemove _)))
 
         S.appendGlobalJs(script)

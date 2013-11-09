@@ -1,36 +1,6 @@
 <div data-lift="surround?with=base-wrap;at=content">
   <head_merge>
     <title lift="Menu.title">Lift 3 Demo: %*%</title>
-    <script>
-      $(document).ready(function() {
-        $( "#query_cb" ).autocomplete({
-          minLength: 2,
-          delay: 200,
-          source: function( request, response ) {
-            var term = request.term;
-            findSuggestions_callback(term, response);
-          }
-        });
-
-        $( "#query_rt" ).autocomplete({
-          minLength: 2,
-          delay: 200,
-          source: function( request, response ) {
-            var term = request.term;
-            findSuggestions.find(term).then(response);
-          }
-        });
-
-        $( "#typeahead_rt" ).typeahead({
-          minLength: 2,
-          source: function( query, process ) {
-            findSuggestions_typeahead.find(query).then(process);
-          }
-        });
-
-      });
-    </script>
-
   </head_merge>
   <div class="main-content">
     <div lift="Notices"></div>
@@ -94,4 +64,35 @@
 
   </div>
   <span data-lift="embed?what=/templates-hidden/parts/footer"></span>
+  <tail>
+    <script>
+      $(document).ready(function() {
+        $( "#query_cb" ).autocomplete({
+          minLength: 2,
+          delay: 200,
+          source: function( request, response ) {
+            var term = request.term;
+            findSuggestions_callback(term, response);
+          }
+        });
+
+        $( "#query_rt" ).autocomplete({
+          minLength: 2,
+          delay: 200,
+          source: function( request, response ) {
+            var term = request.term;
+            findSuggestions.find(term).then(response);
+          }
+        });
+
+        $( "#typeahead_rt" ).typeahead({
+          minLength: 2,
+          source: function( query, process ) {
+            findSuggestions_typeahead.find(query).then(process);
+          }
+        });
+
+      });
+    </script>
+  </tail>
 </div>
